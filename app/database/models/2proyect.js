@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       proyectname: DataTypes.STRING,
       description: DataTypes.TEXT,
       status: DataTypes.BOOLEAN,
+      managerId: DataTypes.INTEGER,
     },
     {
       sequelize,
