@@ -5,10 +5,9 @@ const logger = require('morgan')
 const cors = require('cors')
 const swaggerUI = require('swagger-ui-express')
 const swaggerDocument = require('../docs')
+const { sequelize, fill } = require('./database/models')
 
 const { notFound, productionErrors } = require('./helpers/errors')
-
-const { createDatabase } = require('./database/models')
 
 // Setting
 const PORT = process.env.PORT || 3000
@@ -41,7 +40,9 @@ const server = app.listen(PORT, async () => {
   if (process.env.NODE_ENV !== 'test') {
     console.log(`Starting development server at http://localhost:${PORT}`)
   }
-  await createDatabase()
+  await sequelize.sync({ force: false }).then(() => {
+    fill()
+  })
 })
 
 module.exports = {

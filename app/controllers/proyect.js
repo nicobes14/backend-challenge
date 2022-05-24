@@ -1,7 +1,7 @@
 const { fn, col, where } = require('sequelize')
 const { catchErrors } = require('../helpers/errors')
 const { NotFoundError } = require('./errors/httpError')
-const { db } = require('../database/models')
+const db = require('../database/models')
 
 const { proyect } = db
 
