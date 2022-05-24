@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js",
     "lint:fix": "npm run lint:js -- --fix",
-    "prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore"
+    "prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "start": "node app/server.js"
   },
   "repository": {
     "type": "git",
