@@ -3,12 +3,12 @@ const path = require('path')
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
-// const swaggerUI = require('swagger-ui-express')
-// const swaggerDocument = require('../docs')
+const swaggerUI = require('swagger-ui-express')
+const swaggerDocument = require('../docs')
 
 const { notFound, productionErrors } = require('./helpers/errors')
 
-// const { sequelize, fillGenresTable } = require('./models')
+const { createDatabase } = require('./database/models')
 
 // Setting
 const PORT = process.env.PORT || 3000
@@ -30,8 +30,8 @@ app.use(cors())
 // Rutas
 app.use(require('./routes'))
 
-// app.get('/', (req, res) => res.redirect('/api-docs'))
-// app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+app.get('/', (req, res) => res.redirect('/api-docs'))
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 app.use(notFound)
 app.use(productionErrors)
@@ -41,9 +41,7 @@ const server = app.listen(PORT, async () => {
   if (process.env.NODE_ENV !== 'test') {
     console.log(`Starting development server at http://localhost:${PORT}`)
   }
-  // await sequelize.sync({ force: false }).then(() => {
-  //  fillGenresTable()
-  // })
+  await createDatabase()
 })
 
 module.exports = {

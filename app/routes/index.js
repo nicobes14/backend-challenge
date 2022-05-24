@@ -1,5 +1,5 @@
 const router = require('express').Router()
 
-router.use('/', require('./proyect'))
+router.use('/proyects', require('./proyect'))
 
 module.exports = router
