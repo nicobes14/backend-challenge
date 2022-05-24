@@ -13,10 +13,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'managerId',
         onDelete: 'CASCADE',
       })
+      models.user.hasOne(models.proyect, { foreignKey: 'managerId' })
       proyect.belongsToMany(models.user, {
         through: 'user_proyect',
         as: 'usersInProyect',
         foreignKey: 'proyectId',
+        constraints: false,
+      })
+      models.user.belongsToMany(models.proyect, {
+        through: 'user_proyect',
+        foreignKey: 'userId',
+        as: 'proyects',
+        constraints: false,
       })
     }
   }

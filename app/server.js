@@ -42,7 +42,7 @@ const server = app.listen(PORT, async () => {
       `Starting ${process.env.NODE_ENV} server at http://localhost:${PORT}`
     )
   }
-  await sequelize.sync({ force: true }).then(() => {
+  await sequelize.sync({ force: false }).then(() => {
     fill()
   })
 })
