@@ -38,9 +38,11 @@ app.use(productionErrors)
 // Arrancamos el servidor
 const server = app.listen(PORT, async () => {
   if (process.env.NODE_ENV !== 'test') {
-    console.log(`Starting development server at http://localhost:${PORT}`)
+    console.log(
+      `Starting ${process.env.NODE_ENV} server at http://localhost:${PORT}`
+    )
   }
-  await sequelize.sync({ force: false }).then(() => {
+  await sequelize.sync({ force: true }).then(() => {
     fill()
   })
 })
