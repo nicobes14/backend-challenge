@@ -19,11 +19,6 @@ module.exports = {
       },
       managerId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'users',
-          key: 'id',
-          as: 'managerId',
-        },
       },
       createdAt: {
         allowNull: false,
